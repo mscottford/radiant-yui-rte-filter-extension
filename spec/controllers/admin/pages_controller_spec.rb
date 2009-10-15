@@ -11,7 +11,8 @@ describe Admin::PagesController do
   describe "edit" do
     it "should include YUI dependencies" do
       get :edit, :id => pages(:home)
-      response.should have_tag('link[href=http://yui.yahooapis.com/2.8.0r4/build/assets/skins/sam/skin.css]')
+      response.should have_tag('link[href^=http://yui.yahooapis.com/combo?2.8.0r4]')
+      response.should have_tag('script[src^=http://yui.yahooapis.com/combo?2.8.0r4]')
     end
 
     it "should include the extension javascript" do
