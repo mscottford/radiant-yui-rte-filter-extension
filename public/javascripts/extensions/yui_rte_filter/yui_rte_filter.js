@@ -1,17 +1,16 @@
-var yuiEditors = {};
+var yuiEditors = new Hash();
 function toggle_yui_editor(part_name, filter) {
   element_id = 'part_' + part_name + '_content';
   if (filter == "YUI Rich Text Editor") {
-    yuiEditors[element_id] = new YAHOO.widget.Editor(element_id, {
-      handleSubmit: true
-    });
-    yuiEditors[element_id].render();
+    editor = new YAHOO.widget.Editor(element_id, { handleSubmit: true });
+    yuiEditors.set(element_id, editor);
+    editor.render();
   }
   else {
-    console.log(element_id, yuiEditors[element_id]);
-    if (yuiEditors[element_id]) {
-      yuiEditors[element_id].destroy();
-      yuiEditors[element_id] = null;
+    editor = yuiEditors.get(element_id);
+    if (editor != null) {
+      editor.destroy();
+      yuiEditors.unset(element_id);
     }
   }
 }
@@ -26,5 +25,14 @@ Event.observe(window, 'load',
       }
     }
     $$('body')[0].addClassName('yui-skin-sam');
+
+    // check if page_preview is loaded
+    preview_button = $('show-preview');
+    if (preview_button != null) {
+      Event.observe(preview_button, 'click', function() {
+          yuiEditors.values().each(function(editor) { editor.saveHTML(); });
+        return preview(this);
+      });
+    }
   }
 );
