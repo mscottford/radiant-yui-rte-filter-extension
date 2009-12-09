@@ -7,6 +7,5 @@ class YuiRteFilterExtension < Radiant::Extension
     YuiRteFilter
     admin.page.edit.add :main, 'yui_rte_includes', :before => 'edit_header'
     admin.page.edit.add :part_controls, 'yui_rte_part'
-    #Page.send :include, TextileTags
   end
 end
