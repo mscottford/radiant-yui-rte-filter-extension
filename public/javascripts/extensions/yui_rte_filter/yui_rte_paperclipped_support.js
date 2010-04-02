@@ -1,4 +1,4 @@
-var paperclippedSupportEnabled = true;
+paperclippedSupportEnabled = true;
 
 function configurePaperclippedImageButton(editor) {
   // plugin paperclipped image dialog

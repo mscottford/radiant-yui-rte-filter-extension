@@ -1,4 +1,6 @@
 var yuiEditors = new Hash();
+var paperclippedSupportEnabled;
+
 function toggle_yui_editor(part_name, filter) {
   element_id = 'part_' + part_name + '_content';
   if (filter == "YUI Rich Text Editor") {
