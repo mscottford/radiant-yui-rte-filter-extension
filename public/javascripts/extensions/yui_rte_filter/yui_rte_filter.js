@@ -13,13 +13,9 @@ function toggle_yui_editor(part_name, filter) {
         if (_sel && _sel.tagName && (_sel.tagName.toLowerCase() == 'img')) {
             // Do the normal thing here..
         } else {
-            // They don't have a selected image, open the image browser window
-            win = window.open('/admin/assets/browser', 'IMAGE_BROWSER',
-                'left=20,top=20,width=500,height=500,toolbar=0,resizable=0,status=0,scrollbars=1');
-            if (!win) {
-                // Catch the popup blocker
-                alert('Please disable your popup blocker!');
-            }
+            popup = new Popup.Window(document.getElementById('asset-bucket'));
+            popup.show();
+            
             // This is important.. Return false here to not fire the rest of the listeners
             return false;
         }
